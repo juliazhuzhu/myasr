@@ -1,11 +1,4 @@
 package com.baidu.tts.myphone;
-import com.baidu.aip.asrwakeup3.core.inputstream.MyPipedApplication;
-import com.baidu.aip.asrwakeup3.core.mini.ActivityMiniRecog;
-import com.baidu.aip.asrwakeup3.core.mini.AutoCheck;
-import com.baidu.speech.EventManager;
-import com.baidu.speech.EventManagerFactory;
-import com.baidu.speech.asr.SpeechConstant;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -13,41 +6,18 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedOutputStream;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import com.hexmeet.asrwrapper.HexmeetAsrEngineListener;
+import com.hexmeet.asrwrapper.HexmeetAsrEngine;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import com.baidu.aip.asrwakeup3.core.R;
-import com.baidu.aip.asrwakeup3.core.inputstream.InFileStream;
-import com.baidu.speech.EventListener;
-import com.baidu.speech.EventManager;
-import com.baidu.speech.EventManagerFactory;
-import com.baidu.speech.asr.SpeechConstant;
 //
 // //ActivityMiniRecog
 public class MainActivity extends AppCompatActivity implements HexmeetAsrEngineListener {
@@ -161,12 +131,8 @@ public class MainActivity extends AppCompatActivity implements HexmeetAsrEngineL
 
                         r = is.read(buffer);
                         int sleepTime = 0;
-                        MyPipedApplication myApp = (MyPipedApplication) getApplicationContext();
-                        PipedOutputStream pipedOutputStream = myApp.getPipedOutStream();
-                        boolean isStreamReady = myApp.isStreamReady();
-                        if (r > 0 && isStreamReady == true) {
-
-
+                        PipedOutputStream pipedOutputStream = asr.getPipedOutStream();
+                        if (r > 0 ) {
                             pipedOutputStream.write(buffer, 0, count);
                             sleepTime = r / bytePerMs;
                         } else if (r == 0) {
@@ -186,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements HexmeetAsrEngineL
                     e.printStackTrace();
                     throw new RuntimeException(e);
                 }
+
             }
         };
         (new Thread(run)).start();

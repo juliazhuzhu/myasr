@@ -1,3 +1,4 @@
 rootProject.name = "MyPhone"
 include ':app'
 include ':core'
+include ':asrwrapper'

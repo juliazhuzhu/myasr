@@ -15,16 +15,17 @@ public class MyPipedStream {
 
     private MyPipedStream(Context context) {
         pipedInputStream = new PipedInputStream();
-        //pipedOutputStream = new PipedOutputStream();
+        pipedOutputStream = new PipedOutputStream();
+        InFileStream.setPipedOutputStream(pipedOutputStream);
         this.context = context;
     }
 
     private void start() throws IOException {
         //final InputStream is = context.getAssets().open("outfile.pcm");
-        MyPipedApplication myApp = (MyPipedApplication) context.getApplicationContext();
-        pipedOutputStream = myApp.getPipedOutStream();
+        //MyPipedApplication myApp = (MyPipedApplication) context.getApplicationContext();
+        //pipedOutputStream = myApp.getPipedOutStream();
         pipedInputStream.connect(pipedOutputStream);
-        myApp.setPipedStreamReady(true);
+        //myApp.setPipedStreamReady(true);
 
     }
 

@@ -9,6 +9,7 @@ import com.baidu.aip.asrwakeup3.core.util.MyLogger;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PipedOutputStream;
 
 /**
  * Created by fujiayi on 2017/6/20.
@@ -24,8 +25,17 @@ public class InFileStream {
 
     private static volatile InputStream is;
 
+    private static volatile PipedOutputStream pipedOutputStream = null;
     // 以下3个setContext
 
+
+    public static void setPipedOutputStream(PipedOutputStream ps){
+        InFileStream.pipedOutputStream = ps;
+    }
+
+    public static PipedOutputStream getPipedOutputStream() {
+        return InFileStream.pipedOutputStream;
+    }
     /**
      * 必须要先调用这个方法
      * 如之后调用create16kStream，使用默认的app/src/main/assets/outfile.pcm作为输入

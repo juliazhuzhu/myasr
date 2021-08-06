@@ -1,6 +1,8 @@
-package com.baidu.tts.myphone;
+package com.hexmeet.asrwrapper;
 
 import android.content.Context;
+
+import java.io.PipedOutputStream;
 
 public interface HexmeetAsrEngineImpl {
 
@@ -11,4 +13,5 @@ public interface HexmeetAsrEngineImpl {
     public void destroy();
     public void registerListener(HexmeetAsrEngineListener var1);
     public void unregisterListener(HexmeetAsrEngineListener var1);
+    public PipedOutputStream getPipedOutStream();
 }
