@@ -109,7 +109,7 @@ public class BaiduAsrEngineImpl implements HexmeetAsrEngineImpl, EventListener {
                 }
                 if (name.equals((SpeechConstant.CALLBACK_EVENT_ASR_EXIT))) {
                     //start();
-                    var11.onAsrNetworkError();
+                    var11.onAsrExit();
                 }
 
                 if (name.equals(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL)) {

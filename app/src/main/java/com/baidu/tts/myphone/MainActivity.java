@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements HexmeetAsrEngineL
     }
 
     @Override
-    public void onAsrNetworkError() {
+    public void onAsrExit() {
         printLog("onAsrNetworkError");
         //might exited by network failure, shoud start again;
         //set asr tag to toggle
