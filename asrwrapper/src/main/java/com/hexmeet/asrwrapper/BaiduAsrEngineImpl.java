@@ -58,9 +58,9 @@ public class BaiduAsrEngineImpl implements HexmeetAsrEngineImpl, EventListener {
         Map<String, Object> params = new LinkedHashMap<String, Object>();
         String event = null;
         event = SpeechConstant.ASR_START; // 替换成测试的event
-        //params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, false);
+        params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, false);
         params.put(SpeechConstant.IN_FILE,"#com.baidu.aip.asrwakeup3.core.inputstream.InFileStream.createMyPipedInputStream()");
-        params.put(SpeechConstant.NLU, "enable");
+        //params.put(SpeechConstant.NLU, "enable");
         params.put(SpeechConstant.BDS_ASR_ENABLE_LONG_SPEECH, true);//长语音  优先级高于VAD_ENDPOINT_TIMEOUT
         params.put(SpeechConstant.VAD_ENDPOINT_TIMEOUT, 0); // 长语音
         params.put(SpeechConstant.PID, 15372);
@@ -68,6 +68,7 @@ public class BaiduAsrEngineImpl implements HexmeetAsrEngineImpl, EventListener {
 
         String json = null; // 可以替换成自己的json
         json = new JSONObject(params).toString(); // 这里可以替换成你需要测试的json
+        //printLog()
         asr.send(event, json, null, 0, 0);
 
 
