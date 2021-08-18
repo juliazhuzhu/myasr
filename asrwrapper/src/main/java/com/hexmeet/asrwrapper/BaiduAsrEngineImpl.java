@@ -64,6 +64,7 @@ public class BaiduAsrEngineImpl implements HexmeetAsrEngineImpl, EventListener {
         params.put(SpeechConstant.BDS_ASR_ENABLE_LONG_SPEECH, true);//长语音  优先级高于VAD_ENDPOINT_TIMEOUT
         params.put(SpeechConstant.VAD_ENDPOINT_TIMEOUT, 0); // 长语音
         params.put(SpeechConstant.PID, 15372);
+        params.put(SpeechConstant.DECODER,0);
 
 
         String json = null; // 可以替换成自己的json
